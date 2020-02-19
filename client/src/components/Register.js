@@ -1,8 +1,8 @@
 import React from 'react'
 import {useState} from 'react'
 
-function Register() {
-    const [registrationInfo, setRegistrationInfo] = useState({})
+function RegisterTeam() {
+    const [registrationInfo, setRegistrationInfo] = useState({role: 'ADMIN'})
     const [warningMsg, setWarningMsg] = useState('')
 
     const getRegistrationInfo = (e) => {
@@ -12,7 +12,7 @@ function Register() {
         })
     }
 
-    const registerUser = () => {
+    const registerTeam = () => {
         const url = 'http://localhost:3001/user/register'
         fetch(url, {
             method: 'POST',
@@ -28,14 +28,15 @@ function Register() {
     }
 
     return (<div>
-            <h1>Register</h1>
+            <h1>Register Team</h1>
             <input name='username' onChange={getRegistrationInfo} type='text' placeholder='Enter Username'/>
             <input name='password' onChange={getRegistrationInfo} type='password' placeholder='Enter Password'/>
             <input name='email' onChange={getRegistrationInfo} type='email' placeholder='Email'/>
             <input name='phone' onChange={getRegistrationInfo} type='text' placeholder='Phone'/>
-            <button onClick={registerUser}>Register</button>
+            <input name='team' onChange={getRegistrationInfo} type='text' placeholder='Your Team Name'/>
+            <button onClick={registerTeam}>Register Team</button>
             <p>{warningMsg}</p>
             </div>)
 }
 
-export default Register
+export default RegisterTeam

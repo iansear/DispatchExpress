@@ -32,10 +32,21 @@ router.post('/register', (req, res) => {
             username: req.body.username,
             password: hashword,
             email: req.body.email,
-            phone: req.body.phone
+            phone: req.body.phone,
+            role: req.body.role,
+            team: req.body.team
         })
         user.save().then((resp) => res.send(resp)).catch((error) => res.send(error))
     })
+})
+
+router.get('/getcouriers/:team', (req, res) => {
+    models.User.findAll({
+        where: {
+            role: 'DELIV',
+            team: req.params.team
+        }
+    }).then((couriers) => res.send(couriers))
 })
 
 module.exports = router

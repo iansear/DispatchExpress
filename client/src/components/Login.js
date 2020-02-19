@@ -1,7 +1,9 @@
 import React from 'react'
 import {useState} from 'react'
+import {withRouter} from 'react-router-dom'
+import {connect} from 'react-redux'
 
-function Login() {
+function Login(props) {
     const [loginInfo, setLoginInfo] = useState({})
     const [warningMsg, setWarningMsg] = useState('')
 
@@ -21,8 +23,17 @@ function Login() {
             },
             body: JSON.stringify(loginInfo)
         }).then((resp) => resp.json()).then((json) => {
-            console.log(json.token)
             localStorage.setItem('token', json.token)
+            localStorage.setItem('id', json.user.id)
+            localStorage.setItem('team', json.user.team)
+            props.setUser(json.user)
+            if(json.user.role == 'ADMIN') {
+                props.history.push('/dashboard')
+            } else if(json.user.role == 'DELIV') {
+                props.history.push('/manifest')
+            } else {
+                props.history.push('/')
+            }
         }).catch(() => setWarningMsg('Incorrect username or password.'))
     }
 
@@ -35,4 +46,10 @@ function Login() {
             </div>)
 }
 
-export default Login
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setUser: (user) => dispatch({type: 'SET_USER', user: user})
+    }
+}
+
+export default connect(null, mapDispatchToProps)(withRouter(Login))

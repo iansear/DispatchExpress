@@ -4,16 +4,33 @@ import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
+import {createStore} from 'redux'
+import { Provider } from 'react-redux'
+import reducer from './store/reducer'
 import Home from './components/Home'
+import Dashboard from './components/Dashboard'
+import RegisterEmployee from './components/RegisterEmployee'
+import CreateJob from './components/CreateJob'
+import JobDetails from './components/JobDetails'
+import Manifest from './components/Manifest'
+
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 ReactDOM.render(
-    <BrowserRouter>
-        <App>
-            <Switch>
-                <Route exact path = '/' component = {Home} />
-            </Switch>
-        </App>
-    </BrowserRouter>
+    <Provider store={store}>
+        <BrowserRouter>
+            <App>
+                <Switch>
+                    <Route exact path = '/' component = {Home} />
+                    <Route path = '/dashboard' component = {Dashboard} />
+                    <Route path = '/manifest' component = {Manifest} />
+                    <Route path = '/registeremployee' component = {RegisterEmployee} />
+                    <Route path = '/createjob' component = {CreateJob} />
+                    <Route path = '/jobdetails/:jobID' component = {JobDetails} />
+                </Switch>
+            </App>
+        </BrowserRouter>
+    </Provider>
     , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
