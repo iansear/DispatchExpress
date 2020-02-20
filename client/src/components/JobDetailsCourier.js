@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
+import Menu from './Menu'
 
 function JobDetailsCourier(props) {
     const token = localStorage.getItem('token')
@@ -83,7 +84,9 @@ function JobDetailsCourier(props) {
     }, [])
 
     return (<div>
-        <table>
+        <Menu />
+        <div class='details'>
+        <table cellSpacing='15'>
             <tbody>
                 <tr>
                     <th>ID</th>
@@ -116,6 +119,7 @@ function JobDetailsCourier(props) {
         </table>
         <NavLink to = '/manifest'><button>Back</button></NavLink>
         <p>{message}</p>
+        </div>
     </div>)
 }
 

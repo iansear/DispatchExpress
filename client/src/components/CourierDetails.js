@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {connect} from 'react-redux'
 import {NavLink} from 'react-router-dom'
+import Menu from './Menu'
 
 function CourierDetails(props) {
     const [courier, setCourier] = useState([])
@@ -48,6 +49,8 @@ function CourierDetails(props) {
     }, [])
 
     return (<div>
+                <Menu />
+                <div class='details'>
                 <h2>Courier Details</h2>
                 <NavLink to = '/dashboard'><button>Back</button></NavLink>
                 <select name='role' onChange={getFilterInfo}>
@@ -59,7 +62,7 @@ function CourierDetails(props) {
                     <option value='PICKEDUP'>Picked Up</option>
                     <option value='DELIVERED'>Delivered</option>
                 </select>
-                <table>
+                <table cellSpacing='15'>
                     <thead>
                         <tr>
                             <th>Courier ID</th>
@@ -77,7 +80,7 @@ function CourierDetails(props) {
                         </tr>
                     </tbody>
                 </table>
-                <table>
+                <table cellSpacing='15'>
                     <thead>
                         <tr>
                             <th>Job ID</th>
@@ -90,6 +93,7 @@ function CourierDetails(props) {
                         {jobsURL}
                     </tbody>
                 </table>
+                </div>
             </div>)
 }
 

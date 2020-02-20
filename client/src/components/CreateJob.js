@@ -1,6 +1,7 @@
 import React from 'react'
 import {useState} from 'react'
 import {NavLink} from 'react-router-dom'
+import Menu from './Menu'
 
 function CreateJob(props) {
     const team = localStorage.getItem('team')
@@ -40,7 +41,9 @@ function CreateJob(props) {
     }
 
     return (<div>
+            <Menu />
             {isAuthorized()}
+            <div class='details'>
             <h1>Create Job</h1>
             <input name='pickup' onChange={getJobInfo} type='text' placeholder='Pick Up Address'/>
             <input name='dropoff' onChange={getJobInfo} type='text' placeholder='Dropoff Address'/>
@@ -48,6 +51,7 @@ function CreateJob(props) {
             <button onClick={createJob}>Enter</button>
             <p>{Message}</p>
             <NavLink to = '/dashboard'><button>Back</button></NavLink>
+            </div>
             </div>)
 }
 

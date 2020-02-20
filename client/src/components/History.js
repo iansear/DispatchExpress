@@ -38,9 +38,10 @@ function History() {
 
     return (<div>
         <Menu />
+        <div class='details'>
             <h1>History</h1>
             <NavLink to='/manifest'><button>Manifest</button></NavLink>
-            <table>
+            <table cellSpacing='15'>
                 <thead>
                     <tr>
                         <th>Job ID</th>
@@ -54,6 +55,7 @@ function History() {
                     {jobsURL}
                 </tbody>
             </table>
+            </div>
             </div>)
 }
 

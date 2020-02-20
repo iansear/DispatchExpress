@@ -42,3 +42,17 @@
 #login input {
     margin-bottom: 10px;
 }
+
+.details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.details input {
+    margin-bottom: 10px;
+}
+
+.details select {
+    margin-bottom: 10px;
+}

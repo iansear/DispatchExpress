@@ -39,11 +39,14 @@ function Manifest(props) {
     }, [])
 
     return (<div>
-        <Menu />
+            <Menu />
+            <div class='details'>
             <h1>Manifest</h1>
-            <button onClick={getJobs}>Refresh Data</button>
-            <NavLink to='/history'><button>History</button></NavLink>
-            <table>
+            <div>
+                <button onClick={getJobs}>Refresh Data</button>
+                <NavLink to='/history'><button>History</button></NavLink>
+            </div>
+            <table cellSpacing='15'>
                 <thead>
                     <tr>
                         <th>Job ID</th>
@@ -56,6 +59,7 @@ function Manifest(props) {
                     {jobsURL}
                 </tbody>
             </table>
+            </div>
             </div>)
 }
 

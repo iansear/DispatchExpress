@@ -36,7 +36,7 @@ function RegisterTeam() {
                     </div>
                     <NavLink to='/'><button>Login</button></NavLink>
                 </div>
-                <div id='homebody'>
+                <div class='details'>
                     <h1>Register Team</h1>
                     <input name='username' onChange={getRegistrationInfo} type='text' placeholder='Enter Username'/>
                     <input name='password' onChange={getRegistrationInfo} type='password' placeholder='Enter Password'/>

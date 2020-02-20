@@ -1,6 +1,7 @@
 import React from 'react'
 import {useState} from 'react'
 import {NavLink} from 'react-router-dom'
+import Menu from './Menu'
 
 function RegisterEmployee(props) {
     const team = localStorage.getItem('team')
@@ -45,7 +46,9 @@ function RegisterEmployee(props) {
     }
 
     return (<div>
+            <Menu />
             {isAuthorized()}
+            <div class='details'>
             <h1>New Employee</h1>
             <input name='username' onChange={getRegistrationInfo} type='text' placeholder='Enter Username'/>
             <input name='password' onChange={getRegistrationInfo} type='password' placeholder='Enter Password'/>
@@ -59,6 +62,7 @@ function RegisterEmployee(props) {
             <button onClick={registerUser}>Register</button>
             <p>{Message}</p>
             <NavLink to = '/dashboard'><button>Back</button></NavLink>
+            </div>
             </div>)
 }
 
