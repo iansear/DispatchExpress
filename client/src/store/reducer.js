@@ -1,4 +1,10 @@
-const reducer = (state, action) => {
+const initialState = {
+    user: {},
+    roster: [],
+    jobs: []
+}
+
+const reducer = (state=initialState, action) => {
     if(action.type === 'SET_USER') {
         return {
             ...state,
@@ -14,9 +20,8 @@ const reducer = (state, action) => {
             ...state,
             jobs: action.jobs
         }
-    } else {
-        return state
     }
+    return state
 }
 
 export default reducer

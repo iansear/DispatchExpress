@@ -17,9 +17,11 @@ function Couriers(props) {
 
     const setDisplay = (courierList) => {
         let display = courierList.map((courier) => {
-            return (<div key={courier.id}>
-                        <label>{courier.username}</label>
-                    </div>)
+            const details = '/courierdetails/' + courier.id
+            return (<tr key={courier.id}>
+                        <td><NavLink to={details}>{courier.id}</NavLink></td>
+                        <td>{courier.username}</td>
+                    </tr>)
         })
         setCouriersURL(display)
     }
@@ -31,7 +33,17 @@ function Couriers(props) {
     return (<div>
             <h2>Couriers</h2>
             <NavLink to='/registeremployee'><button>New Employee</button></NavLink>
-            {couriersURL}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Courier ID</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {couriersURL}
+                </tbody>
+            </table>
             </div>)
 }
 

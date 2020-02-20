@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     notes: DataTypes.TEXT,
     status: DataTypes.STRING,
     courier: DataTypes.INTEGER,
-    team: DataTypes.STRING
+    team: DataTypes.STRING,
+    pod: DataTypes.STRING
   }, {});
   Job.associate = function(models) {
     // associations can be defined here

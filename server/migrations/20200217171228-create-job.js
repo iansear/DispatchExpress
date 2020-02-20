@@ -30,6 +30,9 @@ module.exports = {
       team: {
         type: Sequelize.STRING
       },
+      pod: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

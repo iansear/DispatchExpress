@@ -54,7 +54,6 @@ function RegisterEmployee(props) {
             <select name='role' onChange={getRegistrationInfo}>
                 <option></option>
                 <option value='DELIV'>Courier</option>
-                <option value='CSR'>Customer Service</option>
                 <option value='ADMIN'>Administrator</option>
             </select>
             <button onClick={registerUser}>Register</button>

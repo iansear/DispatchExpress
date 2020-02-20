@@ -1,5 +1,6 @@
 const express = require('express')
 const models = require('../models')
+const {Op} = require('sequelize')
 const router = express.Router() 
 
 router.post('/createjob', (req, res) => {
@@ -14,13 +15,13 @@ router.post('/createjob', (req, res) => {
 })
 
 router.post('/updatejob/:id', (req, res) => {
-    console.log(req.body)
     models.Job.update({
         pickup: req.body.pickup,
         dropoff: req.body.dropoff,
         notes: req.body.notes,
         status: req.body.status,
-        courier: req.body.courier
+        courier: req.body.courier,
+        pod: req.body.pod
     }, {
         where: {
             id: req.params.id
@@ -31,7 +32,17 @@ router.post('/updatejob/:id', (req, res) => {
 router.get('/myjobs/:id', (req, res) => {
     models.Job.findAll({
         where: {
-            courier: req.params.id
+            courier: req.params.id,
+            [Op.not]: [{status: 'DELIVERED'}]
+        }
+    }).then((jobs) => res.send(jobs))
+})
+
+router.get('/myjobhistory/:id', (req, res) => {
+    models.Job.findAll({
+        where: {
+            courier: req.params.id,
+            status: 'DELIVERED'
         }
     }).then((jobs) => res.send(jobs))
 })

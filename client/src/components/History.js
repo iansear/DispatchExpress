@@ -1,34 +1,32 @@
 import React, {useEffect, useState} from 'react'
 import {NavLink} from 'react-router-dom'
-import {connect} from 'react-redux'
 import Menu from './Menu'
 
-function Manifest(props) {
+function History() {
     const [jobsURL, setJobsURL] = useState([])
 
     const getJobs = () => {
         const id = localStorage.getItem('id')
         const token = localStorage.getItem('token')
-        const url = 'http://localhost:3001/job/myjobs/' + id
+        const url = 'http://localhost:3001/job/myjobhistory/' + id
         fetch(url, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
             }
         }).then((resp) => resp.json()).then((json) => {
-            props.setJobs(json)
             setDisplay(json)
         }).catch(() => console.log('Could not get Jobs'))
     }
 
     const setDisplay = (jobList) => {
         let display = jobList.map((job) => {
-            const details = '/jobdetailscourier/' + job.id
             return (<tr key={job.id}>
-                        <td><NavLink to={details}>{job.id}</NavLink></td>
+                        <td>{job.id}</td>
                         <td>{job.pickup}</td>
                         <td>{job.dropoff}</td>
                         <td>{job.status}</td>
+                        <td>{job.pod}</td>
                     </tr>)
         })
         setJobsURL(display)
@@ -40,9 +38,8 @@ function Manifest(props) {
 
     return (<div>
         <Menu />
-            <h1>Manifest</h1>
-            <button onClick={getJobs}>Refresh Data</button>
-            <NavLink to='/history'><button>History</button></NavLink>
+            <h1>History</h1>
+            <NavLink to='/manifest'><button>Manifest</button></NavLink>
             <table>
                 <thead>
                     <tr>
@@ -50,6 +47,7 @@ function Manifest(props) {
                         <th>PickUP</th>
                         <th>DropOff</th>
                         <th>Status</th>
+                        <th>POD</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,10 +57,4 @@ function Manifest(props) {
             </div>)
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setJobs: (jobs) => dispatch({type: 'SET_JOBS', jobs: jobs})
-    }
-}
-
-export default connect(null, mapDispatchToProps)(Manifest)
+export default History

@@ -13,6 +13,9 @@ import RegisterEmployee from './components/RegisterEmployee'
 import CreateJob from './components/CreateJob'
 import JobDetails from './components/JobDetails'
 import Manifest from './components/Manifest'
+import History from './components/History'
+import JobDetailsCourier from './components/JobDetailsCourier'
+import CourierDetails from './components/CourierDetails'
 
 const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
@@ -24,9 +27,12 @@ ReactDOM.render(
                     <Route exact path = '/' component = {Home} />
                     <Route path = '/dashboard' component = {Dashboard} />
                     <Route path = '/manifest' component = {Manifest} />
+                    <Route path = '/history' component = {History} />
                     <Route path = '/registeremployee' component = {RegisterEmployee} />
+                    <Route path = '/courierdetails/:id' component = {CourierDetails} />
                     <Route path = '/createjob' component = {CreateJob} />
                     <Route path = '/jobdetails/:jobID' component = {JobDetails} />
+                    <Route path = '/jobdetailscourier/:jobID' component = {JobDetailsCourier} />
                 </Switch>
             </App>
         </BrowserRouter>

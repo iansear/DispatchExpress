@@ -8,7 +8,7 @@ function JobDetails(props) {
     const [courier, setCourier] = useState({})
     const [roster, setRoster] = useState([])
     const [updateInfo, setUpdateInfo] = useState({})
-    const [Message, setMessage] = useState('')
+    const [message, setMessage] = useState('')
 
     const getJob = () => {
         const filteredJob = props.jobs.filter(j => j.id == props.match.params.jobID)
@@ -55,19 +55,29 @@ function JobDetails(props) {
     }
 
     const unassign = () => {
+        const updateInfoDB = {
+            id: updateInfo.id,
+            pickup: updateInfo.pickup,
+            dropoff: updateInfo.dropoff,
+            notes: updateInfo.notes,
+            status: 'UNASSIGNED',
+            courier: null,
+            team: updateInfo.team,
+            pod: updateInfo.pod,
+            createdAt: updateInfo.createdAt,
+            updatedAt: updateInfo.updatedAt
+        }
         setUpdateInfo({
             ...updateInfo,
             status: 'UNASSIGNED',
             courier: null
         })
-        // console.log(updateInfo)
         setJob({
             ...updateInfo,
             status: 'UNASSIGNED',
             courier: null
         })
-        // console.log(job)
-        toDatabase(updateInfo, 'Job Unassigned')
+        toDatabase(updateInfoDB, 'Job Unassigned')
     }
 
     const getUpdateInfo = (e) => {
@@ -149,7 +159,7 @@ function JobDetails(props) {
             </tbody>
         </table>
         <NavLink to = '/dashboard'><button>Back</button></NavLink>
-        <p>{Message}</p>
+        <p>{message}</p>
     </div>)
 }
 

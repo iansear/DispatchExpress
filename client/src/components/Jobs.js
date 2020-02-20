@@ -3,8 +3,20 @@ import {NavLink} from 'react-router-dom'
 import {connect} from 'react-redux'
 
 function Jobs(props) {
-
     const [jobsURL, setJobsURL] = useState([])
+
+
+    const getFilterInfo = (e) => {
+        if(e.target.value == 'ALL') {
+            setDisplay(props.jobs)
+        } else if(e.target.value == 'ACTIVE') {
+            const filteredJobs = props.jobs.filter(j => j.status != 'DELIVERED')
+            setDisplay(filteredJobs)
+        } else {
+            const filteredJobs = props.jobs.filter(j => j.status == e.target.value)
+            setDisplay(filteredJobs)
+        }
+    }
 
     const getJobs = () => {
         const team = localStorage.getItem('team')
@@ -42,6 +54,15 @@ function Jobs(props) {
             <h2>Job Board</h2>
             <NavLink to='/createjob'><button>Create Job</button></NavLink>
             <button onClick={getJobs}>Refresh Data</button>
+            <select name='role' onChange={getFilterInfo}>
+                <option value='ALL'>All</option>
+                <option value='ACTIVE'>Active</option>
+                <option value='UNASSIGNED'>Unassigned</option>
+                <option value='PENDING'>Pending</option>
+                <option value='ACCEPTED'>Accepted</option>
+                <option value='PICKEDUP'>Picked Up</option>
+                <option value='DELIVERED'>Delivered</option>
+            </select>
             <table>
                 <thead>
                     <tr>
@@ -58,10 +79,16 @@ function Jobs(props) {
             </div>)
 }
 
+const mapStateToProps = (state) => {
+    return {
+        jobs: state.jobs
+    }
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
         setJobs: (jobs) => dispatch({type: 'SET_JOBS', jobs: jobs})
     }
 }
 
-export default connect(null, mapDispatchToProps)(Jobs)
+export default connect(mapStateToProps, mapDispatchToProps)(Jobs)
