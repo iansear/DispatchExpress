@@ -1,5 +1,6 @@
 import React from 'react'
 import {useState} from 'react'
+import {NavLink} from 'react-router-dom'
 
 function RegisterTeam() {
     const [registrationInfo, setRegistrationInfo] = useState({role: 'ADMIN'})
@@ -28,14 +29,23 @@ function RegisterTeam() {
     }
 
     return (<div>
-            <h1>Register Team</h1>
-            <input name='username' onChange={getRegistrationInfo} type='text' placeholder='Enter Username'/>
-            <input name='password' onChange={getRegistrationInfo} type='password' placeholder='Enter Password'/>
-            <input name='email' onChange={getRegistrationInfo} type='email' placeholder='Email'/>
-            <input name='phone' onChange={getRegistrationInfo} type='text' placeholder='Phone'/>
-            <input name='team' onChange={getRegistrationInfo} type='text' placeholder='Your Team Name'/>
-            <button onClick={registerTeam}>Register Team</button>
-            <p>{warningMsg}</p>
+                <div class='homeheader'>
+                    <div>
+                        <h1>Dispatch Express</h1>
+                        <h3>Register your team. Sign up team mates. Start Dispatching!</h3>
+                    </div>
+                    <NavLink to='/'><button>Login</button></NavLink>
+                </div>
+                <div id='homebody'>
+                    <h1>Register Team</h1>
+                    <input name='username' onChange={getRegistrationInfo} type='text' placeholder='Enter Username'/>
+                    <input name='password' onChange={getRegistrationInfo} type='password' placeholder='Enter Password'/>
+                    <input name='email' onChange={getRegistrationInfo} type='email' placeholder='Email'/>
+                    <input name='phone' onChange={getRegistrationInfo} type='text' placeholder='Phone'/>
+                    <input name='team' onChange={getRegistrationInfo} type='text' placeholder='Your Team Name'/>
+                    <button onClick={registerTeam}>Register Team</button>
+                    <p>{warningMsg}</p>
+                </div>
             </div>)
 }
 

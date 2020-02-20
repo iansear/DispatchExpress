@@ -1,9 +1,9 @@
 import React from 'react'
-import './App.css'
 
 function App(props) {
     return (<div>
-            {props.children}
+                {props.children}
+                <div id='footer'></div>
             </div>)
 }
 

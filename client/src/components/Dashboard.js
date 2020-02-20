@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import Menu from './Menu'
 import Couriers from './Couriers'
 import Jobs from './Jobs'
+import './dispatch.css'
 
 function Dashboard(props) {
 
@@ -16,10 +17,12 @@ function Dashboard(props) {
         isAuthorized()
     })
 
-    return (<div>
+    return (<div >
             <Menu />
-            <Jobs />
-            <Couriers />
+                <div id='dash-component'>
+                <Jobs />
+                <Couriers />
+                </div>
             </div>)
 }
 

@@ -33,7 +33,7 @@ function Couriers(props) {
     return (<div>
             <h2>Couriers</h2>
             <NavLink to='/registeremployee'><button>New Employee</button></NavLink>
-            <table>
+            <table cellSpacing='15'>
                 <thead>
                     <tr>
                         <th>Courier ID</th>

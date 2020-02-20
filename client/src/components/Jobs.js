@@ -63,7 +63,7 @@ function Jobs(props) {
                 <option value='PICKEDUP'>Picked Up</option>
                 <option value='DELIVERED'>Delivered</option>
             </select>
-            <table>
+            <table cellSpacing='15'>
                 <thead>
                     <tr>
                         <th>Job ID</th>

@@ -2,6 +2,7 @@ import React from 'react'
 import {useState} from 'react'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
+import './dispatch.css'
 
 function Login(props) {
     const [loginInfo, setLoginInfo] = useState({})
@@ -37,7 +38,7 @@ function Login(props) {
         }).catch(() => setWarningMsg('Incorrect username or password.'))
     }
 
-    return (<div>
+    return (<div id='login'>
             <h1>Login</h1>
             <input name='username' onChange={getLoginInfo} type='text' placeholder='Enter Username'/>
             <input name='password' onChange={getLoginInfo} type='password' placeholder='Enter Password'/>

@@ -20,8 +20,9 @@ const reducer = (state=initialState, action) => {
             ...state,
             jobs: action.jobs
         }
+    } else {
+        return state
     }
-    return state
 }
 
 export default reducer
